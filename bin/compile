@@ -130,7 +130,7 @@ for i in \$(ls conf/*-allowed.conf.erb);do erb \$i > \$(echo \$i | sed 's/.erb//
 mkdir -p logs
 touch logs/access.log logs/error.log
 (tail -qF -n 0 --pid=\$\$ logs/*.log &)
-#exec nginx -p .
+exec nginx -p .
 EOF
 chmod +x "$build_dir/bin/start_nginx"
 echo "done"
