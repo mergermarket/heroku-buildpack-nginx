@@ -126,7 +126,7 @@ cat <<EOF >"$build_dir/bin/start_nginx"
 #!/usr/bin/env bash
 erb conf/nginx.conf.erb > conf/nginx.conf
 erb conf/mmg-allowed.conf.erb > conf/mmg-allowed.conf
-for i in $(ls conf/*-allowed.conf.erb);do echo "Found $i"; erb $i > $(echo $i | sed 's/.erb//');done;
+for i in \$(ls conf/*-allowed.conf.erb);do erb \$i > \$(echo \$i | sed 's/.erb//');done;
 mkdir -p logs
 touch logs/access.log logs/error.log
 (tail -qF -n 0 --pid=\$\$ logs/*.log &)
